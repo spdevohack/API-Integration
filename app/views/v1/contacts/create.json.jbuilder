@@ -1,10 +1,11 @@
 json.data do 
 	json.contact do 
-		json.first_name @contact.first_name
-		json.last_name	@contact.last_name
-		json.email     @contact.email 
-		json.organization_id @contact.organization_id
-		json.user_id @contact.user_id
-
+		json.call(
+			@contact,
+			:first_name,
+			:last_name,
+			:email,
+			:organization_id
+		)
 	end
 end

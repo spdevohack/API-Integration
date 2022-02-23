@@ -1,8 +1,14 @@
 module V1
 	class AccountsController < ApplicationController
-		def create
-			@account = current_user.accounts.build(accounts_params)
 
+		def index
+			@accounts = Current.user.accounts
+			render :index, status: 200
+		end
+
+		def create
+			debugger
+			@account = Current.user.accounts.build(accounts_params)
 			if @account.save
 				render :create, status: :created
 			else
@@ -12,7 +18,7 @@ module V1
 
 		private
 		def accounts_params
-			params.require(:account).permit(:name)
+			params.require(:account).permit(:name, :owner_id)
 		end
 	end
 end
